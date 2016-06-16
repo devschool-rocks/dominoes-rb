@@ -1,7 +1,9 @@
 module Dominoes
-  class Bone
-    attr_reader :a, :b, :parent, :children
-    attr_writer :parent
+  module Bone
+    def self.included(klass)
+      klass.send(:attr_reader, *[:a, :b, :parent, :children])
+      klass.send(:attr_writer, :parent)
+    end
 
     def initialize(a, b)
       @a = a
